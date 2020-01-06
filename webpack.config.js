@@ -4,7 +4,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require("path");
-const output = path.resolve(__dirname, "..", "dist");
+const output = path.resolve(__dirname, "dist");
 
 module.exports = {
 	optimization: {
