@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			minHeight: "100vh",
 		},
 
-		descCard: {
-			backgroundColor: "rgba(66, 66, 66, 0.6)",
+		card: {
+			backgroundColor: "rgba(255, 255, 255, 0.6)",
 		},
 	}),
 );
@@ -54,7 +54,7 @@ const Home: FunctionComponent = () => {
 	return <div className={classes.content}>
 		<Grid container spacing={5} justify="space-evenly" alignItems="center" style={{height: "100%"}}>
 			<Grid item lg={5}>
-				<Card className={classes.descCard}>
+				<Card raised className={classes.card}>
 					<CardHeader title="What is this game?"/>
 					<CardContent>
 						<Typography paragraph>Description</Typography>
@@ -62,7 +62,7 @@ const Home: FunctionComponent = () => {
 				</Card>
 			</Grid>
 			<Grid item lg={3}>
-				<Card raised>
+				<Card raised className={classes.card}>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<CardHeader title="Connect to the game"/>
 						<CardContent>
