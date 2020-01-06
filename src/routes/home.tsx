@@ -1,8 +1,18 @@
 import {createElement, Fragment, FunctionComponent} from "react";
-import {Typography} from "@material-ui/core";
+import {createStyles, makeStyles, Theme, Typography} from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		content: {
+			flexGrow: 1,
+			padding: theme.spacing(3),
+		},
+	}),
+);
 
 const Home: FunctionComponent = () => {
-	return <Fragment>
+	const classes = useStyles();
+	return <div className={classes.content}>
 		<Typography variant="h4">Home</Typography>
 		<Typography paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in nisl a dolor porta
 			fermentum. Donec porttitor eleifend ante a hendrerit. Nulla in hendrerit risus. Sed a dui metus. Suspendisse
@@ -63,7 +73,7 @@ const Home: FunctionComponent = () => {
 			nisi id, imperdiet purus. Suspendisse potenti. Fusce in felis erat. Morbi accumsan varius neque quis
 			fermentum. Duis urna lacus, lobortis ac turpis eu, placerat sollicitudin tellus. Vivamus placerat tincidunt
 			mi, sit amet tempus mauris pulvinar faucibus.</Typography>
-	</Fragment>;
+	</div>;
 };
 
 export default Home;

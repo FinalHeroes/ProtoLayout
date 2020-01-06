@@ -1,5 +1,6 @@
-import {createElement, FunctionComponent} from "react";
+import {createElement, FunctionComponent, Fragment} from "react";
 import {AppBar, Button, createStyles, CssBaseline, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
+import {useLinkProps} from "react-navi";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -16,33 +17,56 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexGrow: 1,
 			padding: theme.spacing(3),
 		},
-		appBarButton: {
+		appBarLabel: {
 			marginLeft: theme.spacing(2),
 			marginRight: theme.spacing(2),
 		}
 	}),
 );
 
+interface AppBarLinkProps {
+	text: string;
+	href: string;
+}
+
+const AppBarLink: FunctionComponent<AppBarLinkProps> = props => {
+	const {text, href} = props;
+
+	const classes = useStyles();
+	const linkProps = useLinkProps({href});
+
+	return <Button color="inherit" component="a" classes={{label: classes.appBarLabel}} {...linkProps}>
+		{text}
+	</Button>
+};
+
 export const RootLayout: FunctionComponent = props => {
 	const classes = useStyles();
 
 	return <div className={classes.root}>
 		<CssBaseline/>
+		{props.children || null}
+	</div>;
+};
+
+export const GameLayout: FunctionComponent = props => {
+	const classes = useStyles();
+
+	return <Fragment>
 		<AppBar position="fixed" className={classes.appBar}>
 			<Toolbar variant="dense">
 				<Typography variant="h6" color="inherit" style={{paddingRight: 10}}>
 					Heroes
 				</Typography>
 
-				<Button color="inherit" classes={{label: classes.appBarButton}}>World</Button>
-				<Button color="inherit" classes={{label: classes.appBarButton}}>Hero</Button>
-				<Button color="inherit" classes={{label: classes.appBarButton}}>Inventory</Button>
-				<Button color="inherit" classes={{label: classes.appBarButton}}>Social</Button>
+				<AppBarLink text="World" href="/world"/>
+				<AppBarLink text="Hero" href="/hero"/>
+				<AppBarLink text="Social" href="/social"/>
 			</Toolbar>
 		</AppBar>
 		<main className={classes.content}>
 			<div className={classes.toolbar}/>
 			{props.children || null}
 		</main>
-	</div>;
-};
+	</Fragment>;
+}
