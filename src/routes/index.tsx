@@ -3,32 +3,15 @@ import {createElement} from "react";
 import {View} from "react-navi";
 
 import {GameLayout} from "../layout";
+import Game from "./game";
 
 export default mount({
-	"/home": route({
+	"/": route({
 		title: "Home - ProtoHeroes",
 		getView: () => import("./home")
 	}),
-	"/world": compose(
+	"/game": compose(
 		withView(() => <GameLayout><View/></GameLayout>),
-		route({
-			title: "World - ProtoHeroes",
-			getView: () => import("./world")
-		})
+		Game,
 	),
-	"/hero": compose(
-		withView(() => <GameLayout><View/></GameLayout>),
-		route({
-			title: "Hero - ProtoHeroes",
-			getView: () => import("./hero")
-		})
-	),
-	"/social": compose(
-		withView(() => <GameLayout><View/></GameLayout>),
-		route({
-			title: "Social - ProtoHeroes",
-			getView: () => import("./social")
-		})
-	),
-	"/": redirect("./home")
 });

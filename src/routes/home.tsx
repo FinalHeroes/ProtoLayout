@@ -45,7 +45,7 @@ const Home: FunctionComponent = () => {
 
 	const onSubmit = async (data: LoginCredential) => {
 		try {
-			await nav.navigate("/world");
+			await nav.navigate("/game");
 		} catch (e) {
 			alert("ERROR");
 		}

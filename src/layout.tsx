@@ -59,9 +59,9 @@ export const GameLayout: FunctionComponent = props => {
 					Heroes
 				</Typography>
 
-				<AppBarLink text="World" href="/world"/>
-				<AppBarLink text="Hero" href="/hero"/>
-				<AppBarLink text="Social" href="/social"/>
+				<AppBarLink text="World" href="/game/"/>
+				<AppBarLink text="Hero" href="/game/hero"/>
+				<AppBarLink text="Social" href="/game/social"/>
 			</Toolbar>
 		</AppBar>
 		<main className={classes.content}>
