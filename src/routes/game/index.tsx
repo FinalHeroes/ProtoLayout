@@ -2,12 +2,10 @@ import {compose, mount, route, withView} from "navi";
 import {createElement} from "react";
 import {View} from "react-navi";
 
-import {GameLayout} from "./layout";
+import Layout from "./layout";
 
 export default compose(
-	withView(() => <GameLayout>
-		<View/>
-	</GameLayout>),
+	withView(() => <Layout><View/></Layout>),
 	mount({
 		"/": route({
 			title: "World - ProtoHeroes",

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export const RootLayout: FunctionComponent = props => {
+const RootLayout: FunctionComponent = props => {
 	const classes = useStyles();
 
 	return <div className={classes.root}>

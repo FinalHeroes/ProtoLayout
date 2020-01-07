@@ -37,7 +37,7 @@ const AppBarLink: FunctionComponent<AppBarLinkProps> = props => {
 	</Button>
 };
 
-export const GameLayout: FunctionComponent = props => {
+const GameLayout: FunctionComponent = props => {
 	const classes = useStyles();
 
 	return <Fragment>
@@ -58,3 +58,5 @@ export const GameLayout: FunctionComponent = props => {
 		</main>
 	</Fragment>;
 };
+
+export default GameLayout;
