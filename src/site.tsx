@@ -1,7 +1,7 @@
 import {createMuiTheme, createStyles, CssBaseline, makeStyles, Theme, ThemeProvider} from "@material-ui/core";
 import {createElement, FunctionComponent, Suspense} from "react";
-import {purple, teal} from "@material-ui/core/colors";
 import {HelmetProvider} from "react-navi-helmet-async";
+import {purple, teal} from "@material-ui/core/colors";
 import {Router, View} from "react-navi";
 
 import Routes from "./routes";

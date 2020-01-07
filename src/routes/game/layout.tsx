@@ -1,6 +1,6 @@
+import {AppBar, Button, createStyles, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
 import {createElement, Fragment, FunctionComponent} from "react";
 import {useLinkProps} from "react-navi";
-import {AppBar, Button, createStyles, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
