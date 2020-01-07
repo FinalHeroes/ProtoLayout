@@ -1,10 +1,9 @@
-import {createMuiTheme, Theme, ThemeProvider} from "@material-ui/core";
+import {createMuiTheme, createStyles, CssBaseline, makeStyles, Theme, ThemeProvider} from "@material-ui/core";
 import {createElement, FunctionComponent, Suspense} from "react";
 import {teal, purple} from "@material-ui/core/colors";
 import {HelmetProvider} from "react-navi-helmet-async";
 import {Router, View} from "react-navi";
 
-import {RootLayout} from "./layout";
 import Routes from "./routes";
 
 const theme: Theme = createMuiTheme({
@@ -14,6 +13,23 @@ const theme: Theme = createMuiTheme({
 		secondary: purple
 	}
 });
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			display: 'flex',
+		},
+	}),
+);
+
+export const RootLayout: FunctionComponent = props => {
+	const classes = useStyles();
+
+	return <div className={classes.root}>
+		<CssBaseline/>
+		{props.children || null}
+	</div>;
+};
 
 export const Site: FunctionComponent = props => {
 	return <HelmetProvider>

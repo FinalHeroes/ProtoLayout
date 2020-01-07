@@ -1,12 +1,9 @@
 import {createElement, Fragment, FunctionComponent} from "react";
-import {AppBar, Button, createStyles, CssBaseline, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
 import {useLinkProps} from "react-navi";
+import {AppBar, Button, createStyles, makeStyles, Theme, Toolbar, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		root: {
-			display: 'flex',
-		},
 		appBar: {
 			[theme.breakpoints.up('sm')]: {
 				zIndex: theme.zIndex.drawer + 1,
@@ -38,15 +35,6 @@ const AppBarLink: FunctionComponent<AppBarLinkProps> = props => {
 	return <Button color="inherit" component="a" classes={{label: classes.appBarLabel}} {...linkProps}>
 		{text}
 	</Button>
-};
-
-export const RootLayout: FunctionComponent = props => {
-	const classes = useStyles();
-
-	return <div className={classes.root}>
-		<CssBaseline/>
-		{props.children || null}
-	</div>;
 };
 
 export const GameLayout: FunctionComponent = props => {

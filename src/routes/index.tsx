@@ -2,7 +2,7 @@ import {compose, mount, redirect, route, withView} from "navi";
 import {createElement} from "react";
 import {View} from "react-navi";
 
-import {GameLayout} from "../layout";
+import {GameLayout} from "./game/layout";
 import Game from "./game";
 
 export default mount({
