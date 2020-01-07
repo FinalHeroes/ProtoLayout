@@ -69,4 +69,4 @@ export const GameLayout: FunctionComponent = props => {
 			{props.children || null}
 		</main>
 	</Fragment>;
-}
+};
