@@ -1,9 +1,28 @@
-import {createElement, Fragment, FunctionComponent} from "react";
-import {Typography} from "@material-ui/core";
+import {createElement, Fragment, FunctionComponent, useEffect, useRef} from "react";
+import {Card, CardContent, CardHeader, Grid, Typography} from "@material-ui/core";
 
 const World: FunctionComponent = () => {
+	let canvas = useRef<HTMLCanvasElement>(null);
+	let content = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		console.log("Home rendered");
+		if (content.current && canvas.current) {
+			canvas.current.width = content.current.clientWidth;
+		}
+	}, []);
+
 	return <Fragment>
-		<Typography variant="h4">World</Typography>
+		<Grid container alignItems="center" justify="center">
+			<Grid item lg={9}>
+				<Card raised>
+					<CardHeader title="World"/>
+					<CardContent ref={content} style={{padding: 0}}>
+						<canvas ref={canvas} height={400}/>
+					</CardContent>
+				</Card>
+			</Grid>
+		</Grid>
 	</Fragment>;
 };
 
