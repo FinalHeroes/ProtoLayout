@@ -1,6 +1,6 @@
 import {createElement, FunctionComponent} from "react";
 import {useNavigation} from "react-navi";
-import useForm from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {
 	Button,
 	Card,
