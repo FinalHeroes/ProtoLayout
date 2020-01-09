@@ -7,7 +7,12 @@ import {
 	CardActions,
 	CardContent,
 	CardHeader,
-	createStyles, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+	createStyles,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
 	Grid,
 	makeStyles,
 	TextField,
@@ -99,55 +104,55 @@ const Home: FunctionComponent = () => {
 		</Grid>
 		<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 			<form>
-			<DialogTitle id="form-dialog-title">Create account</DialogTitle>
-			<DialogContent>
-				<DialogContentText>
-					To start playing, please fill this form and click Register.
-				</DialogContentText>
-				<TextField
-					autoFocus
-					margin="dense"
-					label="First Name"
-					type="string"
-					fullWidth
-				/>
-				<TextField
-					margin="dense"
-					id=""
-					label="Last Name"
-					type="string"
-					fullWidth
-				/>
-				<TextField
-					margin="dense"
-					id=""
-					label="Email Adress"
-					type="email"
-					fullWidth
-				/>
-				<TextField
-					margin="dense"
-					id=""
-					label="Password"
-					type="password"
-					fullWidth
-				/>
-				<TextField
-					margin="dense"
-					id=""
-					label="Confirm Password"
-					type="password"
-					fullWidth
-				/>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={handleClose} color="primary" type="reset">
-					Cancel
-				</Button>
-				<Button onClick={handleClose} color="primary" type="submit">
-					Register
-				</Button>
-			</DialogActions>
+				<DialogTitle id="form-dialog-title">Create account</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						To start playing, please fill this form and click Register.
+					</DialogContentText>
+					<TextField
+						autoFocus
+						margin="dense"
+						label="First Name"
+						type="string"
+						fullWidth
+					/>
+					<TextField
+						margin="dense"
+						id=""
+						label="Last Name"
+						type="string"
+						fullWidth
+					/>
+					<TextField
+						margin="dense"
+						id=""
+						label="Email Adress"
+						type="email"
+						fullWidth
+					/>
+					<TextField
+						margin="dense"
+						id=""
+						label="Password"
+						type="password"
+						fullWidth
+					/>
+					<TextField
+						margin="dense"
+						id=""
+						label="Confirm Password"
+						type="password"
+						fullWidth
+					/>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose} color="primary" type="reset">
+						Cancel
+					</Button>
+					<Button onClick={handleClose} color="primary" type="submit">
+						Register
+					</Button>
+				</DialogActions>
 			</form>
 		</Dialog>
 	</div>;
