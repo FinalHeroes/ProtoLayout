@@ -116,7 +116,8 @@ const World: FunctionComponent = () => {
 			return () => window.removeEventListener("resize", onResize);
 		}
 
-		return () => {};
+		return () => {
+		};
 	}, []);
 
 	const marks: Mark[] = [
@@ -135,13 +136,8 @@ const World: FunctionComponent = () => {
 							                  classes={{root: classes.zoomGroup, label: classes.zoomLabel}}
 							                  control={
 								                  <Slider
-									                  color="secondary"
-									                  min={0.5}
-									                  max={1.5}
-									                  step={0.1}
-									                  marks={marks}
-									                  valueLabelDisplay="off"
-									                  value={zoom}
+									                  color="secondary" min={0.5} max={1.5} step={0.1}
+									                  marks={marks} valueLabelDisplay="off" value={zoom}
 									                  onChange={(e, value) => {
 										                  if (typeof value === "number" && canvas.current) {
 											                  setZoom(value);
@@ -156,21 +152,22 @@ const World: FunctionComponent = () => {
 								labelPlacement="start"
 								control={
 									<Switch
-										color="secondary"
-										value={navMode}
+										color="secondary" value={navMode}
 										onChange={e => {
 											setNavMode(e.target.checked);
 											setDragging(false);
 										}}
-									/>}
+									/>
+								}
 							/>
 						</FormGroup>
 					}
 					/>
 					<CardContent classes={{root: classes.mapCard}}>
-						<canvas ref={canvas} className={classes.canvas}
-						        onMouseLeave={() => setDragging(false)} onClick={click}
-						        onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}
+						<canvas
+							ref={canvas} className={classes.canvas}
+							onMouseLeave={() => setDragging(false)} onClick={click}
+							onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove}
 						/>
 					</CardContent>
 				</Card>

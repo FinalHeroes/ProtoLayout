@@ -110,38 +110,23 @@ const Home: FunctionComponent = () => {
 						To start playing, please fill this form and click Register.
 					</DialogContentText>
 					<TextField
-						autoFocus
-						margin="dense"
-						label="First Name"
-						type="string"
+						margin="dense" label="First Name" type="text"
+						fullWidth autoFocus
+					/>
+					<TextField
+						margin="dense" label="Last Name" type="text"
 						fullWidth
 					/>
 					<TextField
-						margin="dense"
-						id=""
-						label="Last Name"
-						type="string"
+						margin="dense" label="Email Adress" type="email"
 						fullWidth
 					/>
 					<TextField
-						margin="dense"
-						id=""
-						label="Email Adress"
-						type="email"
+						margin="dense" label="Password" type="password"
 						fullWidth
 					/>
 					<TextField
-						margin="dense"
-						id=""
-						label="Password"
-						type="password"
-						fullWidth
-					/>
-					<TextField
-						margin="dense"
-						id=""
-						label="Confirm Password"
-						type="password"
+						margin="dense" label="Confirm Password" type="password"
 						fullWidth
 					/>
 				</DialogContent>
