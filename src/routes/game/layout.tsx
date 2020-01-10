@@ -75,7 +75,7 @@ interface ChatMessage {
 	content: string;
 }
 
-const GameLayout: FunctionComponent = props => {
+const GameChat: FunctionComponent = () => {
 	const classes = useStyles();
 	const [chatVisible, setChatVisible] = useState(false);
 
@@ -85,6 +85,40 @@ const GameLayout: FunctionComponent = props => {
 		{sender: "Stormist", content: "Yeah... He's a bitch"},
 		{sender: "System", content: "Hello World!"},
 	];
+
+	return <Fragment><Zoom in={!chatVisible}>
+		<Fab
+			className={classes.chat} color="primary" centerRipple
+			onClick={() => setChatVisible(true)}
+		>
+			<ChatSharp/>
+		</Fab>
+	</Zoom>
+		<Zoom in={chatVisible}>
+			<Card raised classes={{root: classes.chat}}>
+				<CardHeader title="Chat" action={
+					<IconButton onClick={() => setChatVisible(false)} color="secondary">
+						<CloseSharp/>
+					</IconButton>
+				}/>
+				<CardContent classes={{root: classes.chatContent}}>
+					{messages.map((value, index) => <Typography
+						variant="body2" paragraph key={index} classes={{paragraph: classes.chatParagraph}}
+					>
+						<strong>{value.sender}</strong> : {value.content}
+					</Typography>)}
+				</CardContent>
+				<CardActions>
+					<TextField variant="filled" size="small" fullWidth name="chatText" label="Message"/>
+					<Button color="primary">Send</Button>
+				</CardActions>
+			</Card>
+		</Zoom>
+	</Fragment>;
+};
+
+const GameLayout: FunctionComponent = props => {
+	const classes = useStyles();
 
 	return <Fragment>
 		<AppBar position="fixed" className={classes.appBar}>
@@ -101,35 +135,7 @@ const GameLayout: FunctionComponent = props => {
 		<main className={classes.content}>
 			<div className={classes.toolbar}/>
 			{props.children || null}
-
-			<Zoom in={!chatVisible}>
-				<Fab
-					className={classes.chat} color="primary" centerRipple
-					onClick={() => setChatVisible(true)}
-				>
-					<ChatSharp/>
-				</Fab>
-			</Zoom>
-			<Zoom in={chatVisible}>
-				<Card raised classes={{root: classes.chat}}>
-					<CardHeader title="Chat" action={
-						<IconButton onClick={() => setChatVisible(false)} color="secondary">
-							<CloseSharp/>
-						</IconButton>
-					}/>
-					<CardContent classes={{root: classes.chatContent}}>
-						{messages.map((value, index) => <Typography
-							variant="body2" paragraph key={index} classes={{paragraph: classes.chatParagraph}}
-						>
-							<strong>{value.sender}</strong> : {value.content}
-						</Typography>)}
-					</CardContent>
-					<CardActions>
-						<TextField variant="filled" size="small" fullWidth name="chatText" label="Message"/>
-						<Button color="primary">Send</Button>
-					</CardActions>
-				</Card>
-			</Zoom>
+			<GameChat/>
 		</main>
 	</Fragment>;
 };
