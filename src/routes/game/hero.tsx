@@ -53,7 +53,7 @@ const Hero: FunctionComponent = () => {
 		<Grid item lg={9}>
 			<Card raised>
 				<CardHeader title="Hero"/>
-				<CardContent>
+				<CardContent style={{padding: 8}}>
 					<Grid container spacing={2}>
 						<Grid container item direction="row" spacing={2} justify="center">
 							<Grid container item lg={2} direction="column" spacing={2}>
@@ -79,7 +79,7 @@ const Hero: FunctionComponent = () => {
 								</Card>
 							</Grid>
 
-							<Grid container item lg={2} direction="column" justify="flex-start" spacing={2}>
+							<Grid container item lg={2} direction="column" spacing={2}>
 								<Grid item>
 									<EquipmentSlot name="Left Hand"/>
 								</Grid>
