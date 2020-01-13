@@ -16,6 +16,10 @@ export default compose(
 			title: "Hero - ProtoHeroes",
 			getView: () => import("./hero"),
 		}),
+		"/profile": route({
+			title: "Profile - ProtoHeroes",
+			getView: () => import("./profile"),
+		}),
 		"/social": Social,
 	}),
 );

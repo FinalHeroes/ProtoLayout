@@ -8,15 +8,17 @@ import {
 	createStyles,
 	Fab,
 	IconButton,
-	makeStyles, Menu, MenuItem,
+	makeStyles,
+	Menu,
+	MenuItem,
 	TextField,
 	Theme,
 	Toolbar,
 	Typography,
 	Zoom
 } from "@material-ui/core";
-import {createElement, Fragment, FunctionComponent, useState, MouseEvent} from "react";
-import {ChatSharp, CloseSharp} from "@material-ui/icons";
+import {createElement, forwardRef, Fragment, FunctionComponent, MouseEvent, useState} from "react";
+import {ChatSharp, CloseSharp, PersonSharp} from "@material-ui/icons";
 import {useLinkProps} from "react-navi";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -76,18 +78,22 @@ interface AppMenuLinkProps {
 	onClick: () => void;
 }
 
-const AppMenuLink: FunctionComponent<AppMenuLinkProps> = props => {
+const AppMenuLink = forwardRef<any, AppMenuLinkProps>((props, ref) => {
 	const {text, href} = props;
 	const {onClick, ...linkProps} = useLinkProps({href});
 
 	return <MenuItem
+		ref={ref}
 		component="a"
-		onClick={(e: MouseEvent<HTMLAnchorElement>) => {props.onClick(); onClick(e);}}
+		onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+			props.onClick();
+			onClick(e);
+		}}
 		{...linkProps}
 	>
 		{text}
 	</MenuItem>;
-};
+});
 
 interface ChatMessage {
 	sender: string;
@@ -139,8 +145,10 @@ const GameChat: FunctionComponent = () => {
 const GameLayout: FunctionComponent = props => {
 	const classes = useStyles();
 	const [socialEl, setSocialEl] = useState<null | HTMLElement>(null);
+	const [profileEl, setProfileEl] = useState<null | HTMLElement>(null);
 
-	const handleClose = () => setSocialEl(null);
+	const handleSocialClose = () => setSocialEl(null);
+	const handleProfileClose = () => setProfileEl(null);
 
 	return <Fragment>
 		<AppBar position="fixed" className={classes.appBar}>
@@ -151,19 +159,38 @@ const GameLayout: FunctionComponent = props => {
 
 				<AppBarLink text="World" href="/game/"/>
 				<AppBarLink text="Hero" href="/game/hero"/>
-				<Button color="inherit" classes={{label: classes.appBarLabel}} onClick={e => setSocialEl(e.currentTarget)}>
-					Social
-				</Button>
+				<div style={{flexGrow: 1}}>
+					<Button
+						color="inherit"
+						classes={{label: classes.appBarLabel}}
+						onClick={e => setSocialEl(e.currentTarget)}
+					>
+						Social
+					</Button>
+
+					<Menu
+						keepMounted
+						anchorEl={socialEl}
+						open={Boolean(socialEl)}
+						onClose={handleSocialClose}
+					>
+						<AppMenuLink text="Message" href="/game/social/message" onClick={handleSocialClose}/>
+						<AppMenuLink text="Guild" href="/game/social/guild" onClick={handleSocialClose}/>
+						<AppMenuLink text="Party" href="/game/social/party" onClick={handleSocialClose}/>
+					</Menu>
+				</div>
+				<IconButton color="inherit" onClick={e => setProfileEl(e.currentTarget)}>
+					<PersonSharp/>
+				</IconButton>
 
 				<Menu
-					anchorEl={socialEl}
 					keepMounted
-					open={Boolean(socialEl)}
-					onClose={handleClose}
+					anchorEl={profileEl}
+					open={Boolean(profileEl)}
+					onClose={handleProfileClose}
 				>
-					<AppMenuLink text="Message" href="/game/social/message" onClick={handleClose}/>
-					<AppMenuLink text="Guild" href="/game/social/guild" onClick={handleClose}/>
-					<AppMenuLink text="Party" href="/game/social/party" onClick={handleClose}/>
+					<AppMenuLink text="Profile" href="/game/profile" onClick={handleProfileClose}/>
+					<AppMenuLink text="Logout" href="/" onClick={handleProfileClose}/>
 				</Menu>
 			</Toolbar>
 		</AppBar>
