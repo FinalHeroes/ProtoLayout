@@ -5,6 +5,10 @@ import {
 	CardContent,
 	CardHeader,
 	createStyles,
+	Dialog,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
 	FormControlLabel,
 	FormGroup,
 	Grid,
@@ -15,6 +19,7 @@ import {
 	Theme,
 	Typography
 } from "@material-ui/core";
+import {blue} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -184,8 +189,47 @@ const MapCard: FunctionComponent = () => {
 	</Card>;
 };
 
+interface PlayerListDialogProps {
+	open: boolean;
+	onClose: () => void;
+}
+
+const PlayerListDialog: FunctionComponent<PlayerListDialogProps> = props => {
+	const {open, onClose} = props;
+
+	const handleClose = (e: {}, reason: string) => {
+		onClose();
+	};
+
+	return <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+		<DialogTitle>Players at Isandiel @ 1.1</DialogTitle>
+		<DialogContent>
+			<DialogContentText>
+				You have 3 PvP Attacks left today
+			</DialogContentText>
+
+			<Grid container direction="row" justify="space-evenly" alignItems="flex-start" spacing={2}>
+				{[...Array(37).keys()].map(value => (
+					<Grid item lg key={value}>
+						<Card style={{width: 128, height: 128}}>
+							<CardActionArea style={{height: "100%"}}>
+								<CardContent>
+									<Typography variant="body1">Player {value + 1}</Typography>
+								</CardContent>
+							</CardActionArea>
+						</Card>
+					</Grid>
+				))}
+			</Grid>
+		</DialogContent>
+	</Dialog>;
+};
+
 const World: FunctionComponent = () => {
 	const classes = useStyles();
+	const [open, setOpen] = useState({
+		players: false,
+	});
 	const [raised, setRaised] = useState({
 		location: false,
 		players: false,
@@ -226,11 +270,14 @@ const World: FunctionComponent = () => {
 							<CardActionArea
 								onMouseEnter={() => setRaised({
 									location: false,
-									players: true
+									players: true,
 								})}
 								onMouseLeave={() => setRaised({
 									location: false,
-									players: false
+									players: false,
+								})}
+								onClick={() => setOpen({
+									players: true,
 								})}
 							>
 								<CardContent classes={{root: classes.infoCard}}>
@@ -244,6 +291,7 @@ const World: FunctionComponent = () => {
 				</Grid>
 			</Grid>
 		</Grid>
+		<PlayerListDialog open={open.players} onClose={() => setOpen({players: false})}/>
 	</Fragment>;
 };
 
