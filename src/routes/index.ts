@@ -7,5 +7,9 @@ export default mount({
 		title: "Home - ProtoHeroes",
 		getView: () => import("./home")
 	}),
+	"/hero": route({
+		title: "Create Hero - ProtoHeroes",
+		getView: () => import("./create-hero")
+	}),
 	"/game": Game,
 });
