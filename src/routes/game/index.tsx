@@ -3,6 +3,7 @@ import {createElement} from "react";
 import {View} from "react-navi";
 
 import Layout from "./layout";
+import Social from "./social";
 
 export default compose(
 	withView(() => <Layout><View/></Layout>),
@@ -15,9 +16,6 @@ export default compose(
 			title: "Hero - ProtoHeroes",
 			getView: () => import("./hero"),
 		}),
-		"/social": route({
-			title: "Social - ProtoHeroes",
-			getView: () => import("./social"),
-		}),
+		"/social": Social,
 	}),
 );

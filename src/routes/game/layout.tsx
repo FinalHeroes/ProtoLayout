@@ -8,14 +8,14 @@ import {
 	createStyles,
 	Fab,
 	IconButton,
-	makeStyles,
+	makeStyles, Menu, MenuItem,
 	TextField,
 	Theme,
 	Toolbar,
 	Typography,
 	Zoom
 } from "@material-ui/core";
-import {createElement, Fragment, FunctionComponent, useState} from "react";
+import {createElement, Fragment, FunctionComponent, useState, MouseEvent} from "react";
 import {ChatSharp, CloseSharp} from "@material-ui/icons";
 import {useLinkProps} from "react-navi";
 
@@ -70,6 +70,25 @@ const AppBarLink: FunctionComponent<AppBarLinkProps> = props => {
 	</Button>
 };
 
+interface AppMenuLinkProps {
+	text: string;
+	href: string;
+	onClick: () => void;
+}
+
+const AppMenuLink: FunctionComponent<AppMenuLinkProps> = props => {
+	const {text, href} = props;
+	const {onClick, ...linkProps} = useLinkProps({href});
+
+	return <MenuItem
+		component="a"
+		onClick={(e: MouseEvent<HTMLAnchorElement>) => {props.onClick(); onClick(e);}}
+		{...linkProps}
+	>
+		{text}
+	</MenuItem>;
+};
+
 interface ChatMessage {
 	sender: string;
 	content: string;
@@ -119,6 +138,9 @@ const GameChat: FunctionComponent = () => {
 
 const GameLayout: FunctionComponent = props => {
 	const classes = useStyles();
+	const [socialEl, setSocialEl] = useState<null | HTMLElement>(null);
+
+	const handleClose = () => setSocialEl(null);
 
 	return <Fragment>
 		<AppBar position="fixed" className={classes.appBar}>
@@ -129,7 +151,20 @@ const GameLayout: FunctionComponent = props => {
 
 				<AppBarLink text="World" href="/game/"/>
 				<AppBarLink text="Hero" href="/game/hero"/>
-				<AppBarLink text="Social" href="/game/social"/>
+				<Button color="inherit" classes={{label: classes.appBarLabel}} onClick={e => setSocialEl(e.currentTarget)}>
+					Social
+				</Button>
+
+				<Menu
+					anchorEl={socialEl}
+					keepMounted
+					open={Boolean(socialEl)}
+					onClose={handleClose}
+				>
+					<AppMenuLink text="Message" href="/game/social/message" onClick={handleClose}/>
+					<AppMenuLink text="Guild" href="/game/social/guild" onClick={handleClose}/>
+					<AppMenuLink text="Party" href="/game/social/party" onClick={handleClose}/>
+				</Menu>
 			</Toolbar>
 		</AppBar>
 		<main className={classes.content}>

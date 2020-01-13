@@ -1,10 +1,10 @@
 import {createElement, Fragment, FunctionComponent} from "react";
 import {Typography} from "@material-ui/core";
 
-const Social: FunctionComponent = () => {
+const Message: FunctionComponent = () => {
 	return <Fragment>
-		<Typography variant="h4">Social</Typography>
+		<Typography variant="h4">Message</Typography>
 	</Fragment>;
 };
 
-export default Social;
+export default Message;
