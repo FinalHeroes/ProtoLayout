@@ -134,7 +134,10 @@ const Home: FunctionComponent = () => {
 					<Button onClick={handleClose} color="primary" type="reset">
 						Cancel
 					</Button>
-					<Button onClick={handleClose} color="primary" type="submit">
+					<Button color="primary" type="submit" onClick={async () => {
+						handleClose();
+						await nav.navigate("/hero");
+					}}>
 						Register
 					</Button>
 				</DialogActions>
