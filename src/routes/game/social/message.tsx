@@ -75,14 +75,17 @@ const Message: FunctionComponent = () => {
 			id: "multi1",
 			title: "RE : RE : Multi Message",
 			content: "Blah Blah Blah",
+			createdAt: new Date(),
 			previous: {
 				id: "multi2",
 				title: "RE : Multi Message",
 				content: "Blah Blah Blah",
+				createdAt: new Date(),
 				previous: {
 					id: "multi3",
 					title: "Multi Message",
 					content: "Blah Blah Blah",
+					createdAt: new Date(),
 				},
 			},
 		},
@@ -92,6 +95,7 @@ const Message: FunctionComponent = () => {
 		id: value.toString(),
 		title: `Message ${value + 1}`,
 		content: "This is a Message!",
+		createdAt: new Date(),
 	}));
 
 	return <Grid container justify="center">
