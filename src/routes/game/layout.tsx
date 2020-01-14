@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginRight: theme.spacing(2),
 		},
 		chat: {
-			position: "absolute",
+			position: "fixed",
 			bottom: theme.spacing(2),
 			right: theme.spacing(2),
 		},
