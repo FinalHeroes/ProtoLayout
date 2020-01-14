@@ -1,5 +1,15 @@
-import {Card, CardContent, CardHeader, createStyles, Grid, makeStyles, Theme, Typography} from "@material-ui/core";
-import {createElement, FunctionComponent} from "react";
+import {
+	Card,
+	CardContent,
+	CardHeader,
+	createStyles,
+	Grid,
+	makeStyles,
+	Slider,
+	Theme,
+	Typography
+} from "@material-ui/core";
+import {createElement, FunctionComponent, useState} from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -21,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const CreateHero: FunctionComponent = () => {
 	const classes = useStyles();
+	const [str, setStr] = useState(1);
+	const [dex, setDex] = useState(1);
+	const [vit, setVit] = useState(1);
+	const [int, setInt] = useState(1);
 
 	return <div className={classes.content}>
 		<Card variant="outlined" classes={{root: classes.card}}>
@@ -29,19 +43,55 @@ const CreateHero: FunctionComponent = () => {
 				<Grid container direction="row" spacing={2}>
 					<Grid container item lg={6} direction="column" spacing={2}>
 						<Grid item lg>
-							<Typography>Stat Points Left</Typography>
+							<Typography gutterBottom>Stat Points Left</Typography>
+							<Slider
+								color="primary" min={1} max={10} marks disabled
+								value={10 - (str - 1) - (dex - 1) - (vit - 1) - (int - 1)}
+							/>
 						</Grid>
 						<Grid item lg>
-							<Typography>Strength</Typography>
+							<Typography gutterBottom>Strength</Typography>
+							<Slider
+								min={1} max={6} valueLabelDisplay="auto"
+								value={str} marks
+								onChange={(e, value) => {
+									if (typeof value === "number")
+										setStr(value);
+								}}
+							/>
 						</Grid>
 						<Grid item lg>
-							<Typography>Dexterity</Typography>
+							<Typography gutterBottom>Dexterity</Typography>
+							<Slider
+								min={1} max={6} valueLabelDisplay="auto"
+								value={dex} marks
+								onChange={(e, value) => {
+									if (typeof value === "number")
+										setDex(value);
+								}}
+							/>
 						</Grid>
 						<Grid item lg>
-							<Typography>Vitality</Typography>
+							<Typography gutterBottom>Vitality</Typography>
+							<Slider
+								min={1} max={6} valueLabelDisplay="auto"
+								value={vit} marks
+								onChange={(e, value) => {
+									if (typeof value === "number")
+										setVit(value);
+								}}
+							/>
 						</Grid>
 						<Grid item lg>
-							<Typography>Intellect</Typography>
+							<Typography gutterBottom>Intellect</Typography>
+							<Slider
+								min={1} max={6} valueLabelDisplay="auto"
+								value={int} marks
+								onChange={(e, value) => {
+									if (typeof value === "number")
+										setInt(value);
+								}}
+							/>
 						</Grid>
 					</Grid>
 					<Grid container item lg={6} direction="column" spacing={2}>
