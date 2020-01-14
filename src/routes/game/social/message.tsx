@@ -183,8 +183,9 @@ const Message: FunctionComponent = () => {
 						/>
 						<TextField margin="dense" label="Title" name="title" fullWidth
 						           error={Boolean(errors.title)} inputRef={register({required: true})}/>
-						<TextField margin="dense" label="Content" name="content" fullWidth multiline rows={4} rowsMax={10}
-						           error={Boolean(errors.content)} inputRef={register({required: true})}/>
+						<TextField margin="dense" label="Content" name="content" fullWidth multiline rows={4}
+						           rowsMax={10} error={Boolean(errors.content)}
+						           inputRef={register({required: true})}/>
 					</DialogContent>
 					<DialogActions>
 						<Button color="secondary" type="button" onClick={handleClose}>Cancel</Button>
