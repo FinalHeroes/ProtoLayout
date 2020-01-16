@@ -1,15 +1,20 @@
 import {
 	Button,
-	Card, CardActionArea,
-	CardActions, CardContent,
+	Card,
+	CardActionArea,
+	CardActions,
+	CardContent,
 	CardHeader,
 	CardMedia,
 	Dialog,
 	DialogActions,
 	DialogContent,
 	DialogContentText,
-	DialogTitle, GridList, GridListTile,
-	TextField, Typography
+	DialogTitle,
+	GridList,
+	GridListTile,
+	TextField,
+	Typography
 } from "@material-ui/core";
 import {createElement, Fragment, FunctionComponent, useState} from "react";
 import {useNavigation} from "react-navi";

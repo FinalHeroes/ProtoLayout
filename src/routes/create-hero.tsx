@@ -1,13 +1,17 @@
 import {
 	Button,
 	ButtonGroup,
-	Card, CardActionArea,
+	Card,
+	CardActionArea,
 	CardActions,
 	CardContent,
 	CardHeader,
 	createStyles,
-	Grid, GridList, GridListTile,
+	Grid,
+	GridList,
+	GridListTile,
 	makeStyles,
+	TextField,
 	Theme,
 	Typography
 } from "@material-ui/core";
@@ -44,6 +48,7 @@ const CreateHero: FunctionComponent = () => {
 	const classes = useStyles();
 	const nav = useNavigation();
 	const [avatar, setAvatar] = useState<number | boolean>(false);
+	const [name, setName] = useState("");
 	const [str, setStr] = useState(10);
 	const [dex, setDex] = useState(10);
 	const [vit, setVit] = useState(10);
@@ -121,7 +126,9 @@ const CreateHero: FunctionComponent = () => {
 						<Card raised classes={{root: classes.avatarCard}}>
 							<CardHeader title="Choose your Avatar"/>
 							<CardContent>
-								<GridList cellHeight={128} cols={5} style={{maxHeight: "50vh", overflow: "auto"}}>
+								<TextField margin="dense" label="Name" fullWidth value={name}
+								           onChange={e => setName(e.target.value)}/>
+								<GridList cellHeight={128} cols={5} style={{maxHeight: "45vh", overflow: "auto"}}>
 									{[...Array(20).keys()].map(value => (
 										<GridListTile key={value}>
 											<Card
@@ -174,7 +181,7 @@ const CreateHero: FunctionComponent = () => {
 					fullWidth
 					variant="contained"
 					color="primary"
-					disabled={getPointsLeft() > 0}
+					disabled={getPointsLeft() > 0 || avatar === false || name === ""}
 					onClick={async () => await nav.navigate("/game")}
 				>
 					Create
