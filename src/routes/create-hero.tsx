@@ -1,12 +1,12 @@
 import {
 	Button,
 	ButtonGroup,
-	Card,
+	Card, CardActionArea,
 	CardActions,
 	CardContent,
 	CardHeader,
 	createStyles,
-	Grid,
+	Grid, GridList, GridListTile,
 	makeStyles,
 	Theme,
 	Typography
@@ -14,6 +14,7 @@ import {
 import {createElement, FunctionComponent, useState} from "react";
 import {AddSharp, RemoveSharp} from "@material-ui/icons";
 import {useNavigation} from "react-navi";
+import {green} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -30,6 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			position: "relative",
 			height: "100%",
 			backgroundColor: "rgba(255, 255, 255, 0.65)",
+			maxHeight: window.innerHeight - theme.spacing(12) * 2,
+		},
+		avatarCard: {
+			height: "100%",
+			backgroundColor: "rgba(255, 255, 255, 0.5)",
 		},
 	}),
 );
@@ -37,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const CreateHero: FunctionComponent = () => {
 	const classes = useStyles();
 	const nav = useNavigation();
+	const [avatar, setAvatar] = useState<number | boolean>(false);
 	const [str, setStr] = useState(10);
 	const [dex, setDex] = useState(10);
 	const [vit, setVit] = useState(10);
@@ -111,6 +118,32 @@ const CreateHero: FunctionComponent = () => {
 						</Grid>
 					</Grid>
 					<Grid item lg={6}>
+						<Card raised classes={{root: classes.avatarCard}}>
+							<CardHeader title="Choose your Avatar"/>
+							<CardContent>
+								<GridList cellHeight={128} cols={5} style={{maxHeight: "50vh", overflow: "auto"}}>
+									{[...Array(20).keys()].map(value => (
+										<GridListTile key={value}>
+											<Card
+												style={{
+													height: "100%",
+													backgroundColor: avatar === value ? green[300] : "white",
+												}}
+											>
+												<CardActionArea
+													style={{height: "100%"}}
+													onClick={() => setAvatar(value)}
+												>
+													<CardContent>
+														<Typography>Avatar {value + 1}</Typography>
+													</CardContent>
+												</CardActionArea>
+											</Card>
+										</GridListTile>
+									))}
+								</GridList>
+							</CardContent>
+						</Card>
 					</Grid>
 					<Grid container item lg={3} direction="column" spacing={4}>
 						<Grid item lg>
