@@ -111,7 +111,7 @@ const AvatarDialog: FunctionComponent<MyDialogProps> = props => {
 			<GridList cellHeight={128} cols={6}>
 				{[...Array(20).keys()].map(value => (
 					<GridListTile key={value}>
-						<Card
+						<Card variant="outlined"
 							style={{
 								height: "100%",
 								backgroundColor: avatar === value ? green[300] : "white",

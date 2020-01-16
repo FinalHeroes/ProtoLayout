@@ -131,7 +131,7 @@ const CreateHero: FunctionComponent = () => {
 								<GridList cellHeight={128} cols={5} style={{maxHeight: "45vh", overflow: "auto"}}>
 									{[...Array(20).keys()].map(value => (
 										<GridListTile key={value}>
-											<Card
+											<Card variant="outlined"
 												style={{
 													height: "100%",
 													backgroundColor: avatar === value ? green[300] : "white",
