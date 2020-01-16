@@ -6,6 +6,8 @@ import {
 	CardHeader,
 	createStyles,
 	Grid,
+	GridList,
+	GridListTile,
 	makeStyles,
 	Theme,
 	Typography
@@ -40,16 +42,28 @@ const EquipmentSlot: FunctionComponent<EquipmentSlotProps> = props => {
 			onMouseLeave={() => setRaised(false)}
 		>
 			<CardContent>
-				<Typography paragraph>{name}</Typography>
+				<Typography>{name}</Typography>
 			</CardContent>
 		</CardActionArea>
 	</Card>
 };
 
+const InventorySlot: FunctionComponent = () => {
+	const classes = useStyles();
+
+	return <Card variant="outlined" classes={{root: classes.itemSlotCard}}>
+		<CardActionArea classes={{root: classes.itemSlotAction}}>
+			<CardContent>
+				<Typography>Slot</Typography>
+			</CardContent>
+		</CardActionArea>
+	</Card>;
+};
+
 const Hero: FunctionComponent = () => {
 	const classes = useStyles();
 
-	return <Grid container justify="center">
+	return <Grid container justify="center" spacing={2}>
 		<Grid item lg={9}>
 			<Card raised>
 				<CardHeader title="Hero"/>
@@ -107,6 +121,21 @@ const Hero: FunctionComponent = () => {
 							</Grid>
 						</Grid>
 					</Grid>
+				</CardContent>
+			</Card>
+		</Grid>
+
+		<Grid item lg={9}>
+			<Card>
+				<CardHeader title="Inventory"/>
+				<CardContent>
+					<GridList cols={10} cellHeight={128}>
+						{[...Array(10).keys()].map(value => (
+							<GridListTile>
+								<InventorySlot key={value}/>
+							</GridListTile>
+						))}
+					</GridList>
 				</CardContent>
 			</Card>
 		</Grid>
