@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		card: {
 			position: "relative",
 			height: "100%",
-			backgroundColor: "rgba(255, 255, 255, 0.6)",
+			backgroundColor: "rgba(255, 255, 255, 0.65)",
 		},
 	}),
 );
@@ -49,12 +49,12 @@ const CreateHero: FunctionComponent = () => {
 			<CardHeader title="Create your Hero"/>
 			<CardContent>
 				<Grid container direction="row" spacing={2}>
-					<Grid container item lg={3} direction="column" spacing={2}>
+					<Grid container item lg={3} direction="column" spacing={4}>
 						<Grid item lg>
 							<Typography gutterBottom>Stat Points Left : {getPointsLeft()}</Typography>
 						</Grid>
 						<Grid item lg>
-							<Typography gutterBottom>Strength</Typography>
+							<Typography variant="caption" gutterBottom>Strength</Typography>
 							<ButtonGroup variant="contained" color="primary" fullWidth>
 								<Button onClick={() => setStr(str - 1)} disabled={str === 10}>
 									<RemoveSharp/>
@@ -68,7 +68,7 @@ const CreateHero: FunctionComponent = () => {
 							</ButtonGroup>
 						</Grid>
 						<Grid item lg>
-							<Typography gutterBottom>Dexterity</Typography>
+							<Typography variant="caption" gutterBottom>Dexterity</Typography>
 							<ButtonGroup variant="contained" color="primary" fullWidth>
 								<Button onClick={() => setDex(dex - 1)} disabled={dex === 10}>
 									<RemoveSharp/>
@@ -82,7 +82,7 @@ const CreateHero: FunctionComponent = () => {
 							</ButtonGroup>
 						</Grid>
 						<Grid item lg>
-							<Typography gutterBottom>Vitality</Typography>
+							<Typography variant="caption" gutterBottom>Vitality</Typography>
 							<ButtonGroup variant="contained" color="primary" fullWidth>
 								<Button onClick={() => setVit(vit - 1)} disabled={vit === 10}>
 									<RemoveSharp/>
@@ -96,7 +96,7 @@ const CreateHero: FunctionComponent = () => {
 							</ButtonGroup>
 						</Grid>
 						<Grid item lg>
-							<Typography gutterBottom>Intellect</Typography>
+							<Typography variant="caption" gutterBottom>Intellect</Typography>
 							<ButtonGroup variant="contained" color="primary" fullWidth>
 								<Button onClick={() => setInt(int - 1)} disabled={int === 10}>
 									<RemoveSharp/>
@@ -112,21 +112,26 @@ const CreateHero: FunctionComponent = () => {
 					</Grid>
 					<Grid item lg={6}>
 					</Grid>
-					<Grid container item lg={3} direction="column" spacing={2}>
+					<Grid container item lg={3} direction="column" spacing={4}>
 						<Grid item lg>
-							<Typography>Damage</Typography>
+							<Typography variant="caption" gutterBottom>Damage</Typography>
+							<Typography variant="body1">{str * 2} - {str * 4}</Typography>
 						</Grid>
 						<Grid item lg>
-							<Typography>Health</Typography>
+							<Typography variant="caption" gutterBottom>Health</Typography>
+							<Typography variant="body1">{vit * 10}</Typography>
 						</Grid>
 						<Grid item lg>
-							<Typography>Mana</Typography>
+							<Typography variant="caption" gutterBottom>Mana</Typography>
+							<Typography variant="body1">{int * 5}</Typography>
 						</Grid>
 						<Grid item lg>
-							<Typography>Dodge Chance</Typography>
+							<Typography variant="caption" gutterBottom>Dodge Chance</Typography>
+							<Typography variant="body1">{(dex * 0.15).toPrecision(4)}%</Typography>
 						</Grid>
 						<Grid item lg>
-							<Typography>Critical Chance</Typography>
+							<Typography variant="caption" gutterBottom>Critical Chance</Typography>
+							<Typography variant="body1">{(2 * Math.sqrt(dex)).toPrecision(4)}%</Typography>
 						</Grid>
 					</Grid>
 				</Grid>
