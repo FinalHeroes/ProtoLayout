@@ -1,3 +1,6 @@
+import {createElement, forwardRef, Fragment, FunctionComponent, MouseEvent, useState} from "react";
+import {ChatSharp, CloseSharp, PersonSharp} from "@material-ui/icons";
+import {useLinkProps} from "react-navi";
 import {
 	AppBar,
 	Button,
@@ -17,9 +20,6 @@ import {
 	Typography,
 	Zoom
 } from "@material-ui/core";
-import {createElement, forwardRef, Fragment, FunctionComponent, MouseEvent, useState} from "react";
-import {ChatSharp, CloseSharp, PersonSharp} from "@material-ui/icons";
-import {useLinkProps} from "react-navi";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

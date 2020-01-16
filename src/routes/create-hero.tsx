@@ -1,3 +1,7 @@
+import {createElement, FunctionComponent, useState} from "react";
+import {AddSharp, RemoveSharp} from "@material-ui/icons";
+import {green} from "@material-ui/core/colors";
+import {useNavigation} from "react-navi";
 import {
 	Button,
 	ButtonGroup,
@@ -15,10 +19,6 @@ import {
 	Theme,
 	Typography
 } from "@material-ui/core";
-import {createElement, FunctionComponent, useState} from "react";
-import {AddSharp, RemoveSharp} from "@material-ui/icons";
-import {useNavigation} from "react-navi";
-import {green} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
