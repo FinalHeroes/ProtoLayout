@@ -1,11 +1,12 @@
 import {createElement, Fragment, FunctionComponent, MouseEvent, useEffect, useRef, useState} from "react";
 import {
+	Button,
 	Card,
 	CardActionArea,
 	CardContent,
 	CardHeader,
 	createStyles,
-	Dialog,
+	Dialog, DialogActions,
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
@@ -188,12 +189,12 @@ const MapCard: FunctionComponent = () => {
 	</Card>;
 };
 
-interface PlayerListDialogProps {
+interface MyDialogProps {
 	open: boolean;
 	onClose: () => void;
 }
 
-const PlayerListDialog: FunctionComponent<PlayerListDialogProps> = props => {
+const PlayerListDialog: FunctionComponent<MyDialogProps> = props => {
 	const {open, onClose} = props;
 
 	const handleClose = (e: {}, reason: string) => {
@@ -224,10 +225,33 @@ const PlayerListDialog: FunctionComponent<PlayerListDialogProps> = props => {
 	</Dialog>;
 };
 
+const DeathDialog: FunctionComponent<MyDialogProps> = props => {
+	const {open, onClose} = props;
+
+	const onResurect = () => {
+		onClose();
+	};
+
+	return <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth disableBackdropClick disableEscapeKeyDown>
+		<DialogTitle style={{textAlign: "center"}}>You are Dead</DialogTitle>
+		<DialogContent style={{
+			height: 550,
+			backgroundImage: "url('/assets/death-angel.png')",
+			backgroundRepeat: "no-repeat",
+			backgroundSize: "cover",
+			backgroundPosition: "bottom",
+		}}/>
+		<DialogActions>
+			<Button color="primary" variant="contained" fullWidth onClick={onResurect}>Resurect</Button>
+		</DialogActions>
+	</Dialog>;
+};
+
 const World: FunctionComponent = () => {
 	const classes = useStyles();
 	const [open, setOpen] = useState({
 		players: false,
+		death: true,
 	});
 	const [raised, setRaised] = useState({
 		location: false,
@@ -277,6 +301,7 @@ const World: FunctionComponent = () => {
 								})}
 								onClick={() => setOpen({
 									players: true,
+									death: false,
 								})}
 							>
 								<CardContent classes={{root: classes.infoCard}}>
@@ -290,7 +315,18 @@ const World: FunctionComponent = () => {
 				</Grid>
 			</Grid>
 		</Grid>
-		<PlayerListDialog open={open.players} onClose={() => setOpen({players: false})}/>
+		<PlayerListDialog open={open.players}
+		                  onClose={() => setOpen({
+			                  players: false,
+			                  death: false,
+		                  })}
+		/>
+		<DeathDialog open={open.death}
+		             onClose={() => setOpen({
+			             players: false,
+			             death: false,
+		             })}
+		/>
 	</Fragment>;
 };
 

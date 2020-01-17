@@ -131,8 +131,8 @@ const Hero: FunctionComponent = () => {
 				<CardContent>
 					<GridList cols={10} cellHeight={128}>
 						{[...Array(10).keys()].map(value => (
-							<GridListTile>
-								<InventorySlot key={value}/>
+							<GridListTile key={value}>
+								<InventorySlot/>
 							</GridListTile>
 						))}
 					</GridList>
