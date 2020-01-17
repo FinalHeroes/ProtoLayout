@@ -200,7 +200,7 @@ const PlayerListDialog: FunctionComponent<PlayerListDialogProps> = props => {
 		onClose();
 	};
 
-	return <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+	return <Dialog open={open} onClose={handleClose} scroll="body" fullWidth maxWidth="md">
 		<DialogTitle>Players at Isandiel @ 1.1</DialogTitle>
 		<DialogContent>
 			<DialogContentText>
