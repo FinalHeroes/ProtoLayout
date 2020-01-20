@@ -14,7 +14,7 @@ import {
 	DialogContentText,
 	DialogTitle,
 	Grid,
-	makeStyles,
+	makeStyles, styled,
 	TextField,
 	Theme,
 	Typography
@@ -27,21 +27,21 @@ interface LoginCredential {
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		content: {
-			flexGrow: 1,
-			padding: theme.spacing(3),
-			backgroundImage: "url('/assets/login-backdrop.jpg')",
-			backgroundRepeat: "no-repeat",
-			backgroundSize: "cover",
-			backgroundPosition: "bottom",
-			minHeight: "100vh",
-		},
-
 		card: {
 			backgroundColor: "rgba(255, 255, 255, 0.6)",
 		},
 	}),
 );
+
+const Content = styled("div")(({theme}) => ({
+	flexGrow: 1,
+	padding: theme.spacing(3),
+	backgroundImage: "url('/assets/login-backdrop.jpg')",
+	backgroundRepeat: "no-repeat",
+	backgroundSize: "cover",
+	backgroundPosition: "bottom",
+	minHeight: "100vh",
+}));
 
 const Home: FunctionComponent = () => {
 	const {register, handleSubmit, errors} = useForm<LoginCredential>();
@@ -66,7 +66,7 @@ const Home: FunctionComponent = () => {
 		setOpen(false);
 	};
 
-	return <div className={classes.content}>
+	return <Content>
 		<Grid container spacing={5} justify="space-evenly" alignItems="center" style={{height: "100%"}}>
 			<Grid item lg={5}>
 				<Card raised className={classes.card}>
@@ -143,7 +143,7 @@ const Home: FunctionComponent = () => {
 				</DialogActions>
 			</form>
 		</Dialog>
-	</div>;
+	</Content>;
 };
 
 export default Home;

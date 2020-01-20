@@ -14,7 +14,7 @@ import {
 	Grid,
 	GridList,
 	GridListTile,
-	makeStyles,
+	makeStyles, styled,
 	TextField,
 	Theme,
 	Typography
@@ -22,15 +22,6 @@ import {
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		content: {
-			flexGrow: 1,
-			padding: theme.spacing(12),
-			backgroundImage: "url('/assets/create-hero-background.jpg')",
-			backgroundRepeat: "no-repeat",
-			backgroundSize: "cover",
-			backgroundPosition: "bottom",
-			minHeight: "100vh",
-		},
 		card: {
 			position: "relative",
 			height: "100%",
@@ -44,6 +35,16 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
+const Content = styled("div")(({theme}) => ({
+	flexGrow: 1,
+	padding: theme.spacing(12),
+	backgroundImage: "url('/assets/create-hero-background.jpg')",
+	backgroundRepeat: "no-repeat",
+	backgroundSize: "cover",
+	backgroundPosition: "bottom",
+	minHeight: "100vh",
+}));
+
 const CreateHero: FunctionComponent = () => {
 	const classes = useStyles();
 	const nav = useNavigation();
@@ -56,7 +57,7 @@ const CreateHero: FunctionComponent = () => {
 
 	const getPointsLeft = () => 10 - (str - 10) - (dex - 10) - (vit - 10) - (int - 10);
 
-	return <div className={classes.content}>
+	return <Content>
 		<Card variant="outlined" classes={{root: classes.card}}>
 			<CardHeader title="Create your Hero"/>
 			<CardContent>
@@ -188,7 +189,7 @@ const CreateHero: FunctionComponent = () => {
 				</Button>
 			</CardActions>
 		</Card>
-	</div>;
+	</Content>;
 };
 
 export default CreateHero;
